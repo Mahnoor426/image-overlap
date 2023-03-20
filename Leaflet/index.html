@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Image Overlay</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div id="map"></div>
+
+    <script>
+        // describing center of the map or in other words created map options
+        var center = [-33.8650, 151.2094];
+
+        //  step # 1 : Create the map object
+        var map = L.map('map').setView(center, 5);
+
+        //  step # 2 :Set up the OSM layer
+        L.tileLayer(
+            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Data © <a href="http://osm.org/copyright">OpenStreetMap</a>',
+            maxZoom: 18
+        }).addTo(map); // step # 3: here as well added layer to map
+        
+        // step # 4: created image overlay using L.imageOverlay()
+        var imageUrl = 'flower.jpg',
+            imageBounds = [center, [67.214178442955, 25.147785450574535], [67.21493482589722, 25.14780487437314], [67.21489191055298, 25.147188167258566], [67.21403896808624, 25.147125039582836], [67.2141033411026, 25.147780594624404]];
+
+        L.imageOverlay(imageUrl, imageBounds).addTo(map);
+        L.imageOverlay(imageUrl, imageBounds).bringToFront();
+    </script>
+
+
+</html>
